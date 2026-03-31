@@ -1,0 +1,26 @@
+{
+  "title": "APM RED Metrics",
+  "panels": [
+    {
+      "type": "graph",
+      "title": "Requests",
+      "targets": [
+        {"expr": "sum(rate(spanmetrics_calls_total[5m])) by (service_name)"}
+      ]
+    },
+    {
+      "type": "graph",
+      "title": "Errors",
+      "targets": [
+        {"expr": "sum(rate(spanmetrics_calls_total{status_code=\"STATUS_CODE_ERROR\"}[5m])) by (service_name)"}
+      ]
+    },
+    {
+      "type": "graph",
+      "title": "Latency P95",
+      "targets": [
+        {"expr": "histogram_quantile(0.95, sum(rate(spanmetrics_latency_bucket[5m])) by (le, service_name))"}
+      ]
+    }
+  ]
+}

@@ -1,0 +1,20 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: observability
+  namespace: openshift-gitops
+spec:
+  project: default
+  source:
+    repoURL: https://github.com/luissobrinhoeds/observability
+    targetRevision: HEAD
+    path: overlays/lab
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: observability
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true

@@ -1,0 +1,8 @@
+apiVersion: grafana.integreatly.org/v1beta1
+kind: GrafanaDashboard
+metadata:
+  name: red-dashboard
+  namespace: observability
+spec:
+  json: |
+$(cat dashboard-red.json)
