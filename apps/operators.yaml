@@ -1,17 +1,17 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: observability
+  name: operators
   namespace: openshift-gitops
 spec:
   project: default
   source:
     repoURL: https://github.com/luissobrinhoeds/observability
     targetRevision: HEAD
-    path: observability
+    path: operators
   destination:
     server: https://kubernetes.default.svc
-    namespace: observability
+    namespace: openshift-operators
   syncPolicy:
     automated:
       prune: true
